@@ -7,6 +7,25 @@
 
 import UIKit
 
+extension UICollectionViewCell {
+    
+    static var reuseIdentifier: String {
+        String(describing: self)
+    }
+    
+}
+
+extension FeatureCell: ConfigureCell {
+    
+    func configure(with app: App) {
+        tagLineLabel.text = app.tagline.uppercased()
+        nameLabel.text = app.name
+        subtitleLabel.text = app.subheading
+    }
+    
+    
+}
+
 class FeatureCell: UICollectionViewCell {
     
     var separator: UIView = {
@@ -17,30 +36,38 @@ class FeatureCell: UICollectionViewCell {
     
     let tagLineLabel: UILabel = {
         let label = UILabel()
-        label.text = "Exemplo"
+//        label.text = "Exemplo"
+        label.textColor = .systemBlue
+        label.font = .systemFont(ofSize: 12, weight: .bold)
         return label
     }()
     
     let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Subtitle Label"
+//        label.text = "Subtitle Label"
+        label.font = .preferredFont(forTextStyle: .title2)
+        label.textColor = .secondaryLabel
         return label
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Name Label"
+//        label.text = "Name Label"
+        label.textColor = .label
+        label.font = .preferredFont(forTextStyle: .title2)
         return label
     }()
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
+        imageView.backgroundColor = .random()
         return imageView
     }()
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [separator, tagLineLabel, subtitleLabel, nameLabel, imageView])
+        let stackView = UIStackView(arrangedSubviews: [separator, tagLineLabel, nameLabel, subtitleLabel, imageView])
         stackView.axis = .vertical
         return stackView
     }()
@@ -65,6 +92,8 @@ extension FeatureCell: ViewCode {
     func addConstraints() {
         separator.constrainHeight(1)
         stackView.fillSuperview()
+        stackView.setCustomSpacing(10, after: separator)
+        stackView.setCustomSpacing(10, after: subtitleLabel)
     }
     
     
@@ -77,6 +106,9 @@ struct FeaturePreviews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
             let cell = FeatureCell()
+            let app = App(tagline: "Lorem ipsum", name: "Lorem ipsum", subheading: "Lorem ipsum")
+            
+            cell.configure(with: app)
             
             return cell
         }

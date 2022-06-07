@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1341030E284FC4C900FB8A10 /* ConfigureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341030D284FC4C900FB8A10 /* ConfigureCell.swift */; };
+		13410310284FCED200FB8A10 /* ListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341030F284FCED200FB8A10 /* ListTableCell.swift */; };
 		13B17931284F87090056E033 /* DecodableWithParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B17930284F87090056E033 /* DecodableWithParse.swift */; };
 		13B17933284F94900056E033 /* FeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B17932284F94900056E033 /* FeatureCell.swift */; };
 		13B17935284F94D60056E033 /* UIVIewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B17934284F94D60056E033 /* UIVIewPreview.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1341030D284FC4C900FB8A10 /* ConfigureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCell.swift; sourceTree = "<group>"; };
+		1341030F284FCED200FB8A10 /* ListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableCell.swift; sourceTree = "<group>"; };
 		13B17930284F87090056E033 /* DecodableWithParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableWithParse.swift; sourceTree = "<group>"; };
 		13B17932284F94900056E033 /* FeatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCell.swift; sourceTree = "<group>"; };
 		13B17934284F94D60056E033 /* UIVIewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewPreview.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				13B17932284F94900056E033 /* FeatureCell.swift */,
+				1341030F284FCED200FB8A10 /* ListTableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -111,6 +116,7 @@
 				2EF1638D284E25E20060C8BD /* ViewCode.swift */,
 				13B17930284F87090056E033 /* DecodableWithParse.swift */,
 				13B17934284F94D60056E033 /* UIVIewPreview.swift */,
+				1341030D284FC4C900FB8A10 /* ConfigureCell.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -190,12 +196,14 @@
 				13B17931284F87090056E033 /* DecodableWithParse.swift in Sources */,
 				2EF16386284E25260060C8BD /* Section.swift in Sources */,
 				2EF1636F284E24A40060C8BD /* AppDelegate.swift in Sources */,
+				1341030E284FC4C900FB8A10 /* ConfigureCell.swift in Sources */,
 				2EF1638C284E25B70060C8BD /* UIView+Constraints.swift in Sources */,
 				2EF16388284E25550060C8BD /* App.swift in Sources */,
 				2EF1638A284E258C0060C8BD /* UIColor+Random.swift in Sources */,
 				13B17935284F94D60056E033 /* UIVIewPreview.swift in Sources */,
 				2EF16371284E24A40060C8BD /* SceneDelegate.swift in Sources */,
 				13B17933284F94900056E033 /* FeatureCell.swift in Sources */,
+				13410310284FCED200FB8A10 /* ListTableCell.swift in Sources */,
 				2EF1638E284E25E20060C8BD /* ViewCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
