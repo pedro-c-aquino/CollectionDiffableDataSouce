@@ -39,8 +39,13 @@ class ViewController: UIViewController {
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, App> {
         UICollectionViewDiffableDataSource<Section, App>(collectionView: collectionView) { collectionView, indexPath, app in
             switch self.sections[indexPath.section].type {
+                
             case "listTable":
                 return collectionView.configure(ListTableCell.self, with: app, for: indexPath)
+                
+            case "downloadTable":
+                return collectionView.configure(DownloadTableCell.self, with: app, for: indexPath)
+                
             default:
                 return collectionView.configure(FeatureCell.self, with: app, for: indexPath)
                 
@@ -52,7 +57,7 @@ class ViewController: UIViewController {
         dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
             guard let self = self else { return nil }
             switch self.sections[indexPath.section].type {
-            case "listTable":
+            case "listTable", "downloadTable":
                 guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseIdentifier, for: indexPath) as? SectionHeader else { return nil }
                 guard let app = self.dataSource.itemIdentifier(for: indexPath) else { return nil }
                 guard let section = self.dataSource.snapshot().sectionIdentifier(containingItem: app) else { return nil }
@@ -74,6 +79,7 @@ class ViewController: UIViewController {
         collectionView.register(FeatureCell.self, forCellWithReuseIdentifier: FeatureCell.reuseIdentifier)
         collectionView.register(ListTableCell.self, forCellWithReuseIdentifier: ListTableCell.reuseIdentifier)
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseIdentifier)
+        collectionView.register(DownloadTableCell.self, forCellWithReuseIdentifier: DownloadTableCell.reuseIdentifier)
     }
 
     func createCompositionalLayout() -> UICollectionViewLayout {
@@ -83,8 +89,13 @@ class ViewController: UIViewController {
             let section = self.sections[sectionIndex]
             
             switch section.type {
+                
+            case "downloadTable":
+                return self.createDownloadSection()
+                
             case "listTable":
                 return self.createListTableSection()
+                
             default:
                 return self.createFeatureSection()
             }
@@ -95,6 +106,21 @@ class ViewController: UIViewController {
         layout.configuration = config
         
         return layout
+    }
+    
+    func createDownloadSection() -> NSCollectionLayoutSection {
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.3))
+        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalWidth(0.5))
+        let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [layoutItem])
+        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+        layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
+        let sectionHeader = createSectionHeader()
+        layoutSection.boundarySupplementaryItems = [sectionHeader]
+        
+        return layoutSection
     }
     
     func createListTableSection() -> NSCollectionLayoutSection {
