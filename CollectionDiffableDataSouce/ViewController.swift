@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setup()
         registerCells()
+        createHeader()
         reloadSnapShotData()
     }
     
@@ -47,9 +48,32 @@ class ViewController: UIViewController {
         }
     }
     
+    func createHeader() {
+        dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+            guard let self = self else { return nil }
+            switch self.sections[indexPath.section].type {
+            case "listTable":
+                guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseIdentifier, for: indexPath) as? SectionHeader else { return nil }
+                guard let app = self.dataSource.itemIdentifier(for: indexPath) else { return nil }
+                guard let section = self.dataSource.snapshot().sectionIdentifier(containingItem: app) else { return nil }
+               
+                guard !section.title.isEmpty else { return nil }
+                
+                sectionHeader.titleLabel.text = section.title
+                sectionHeader.subtitleLabel.text = section.subtitle
+                
+                return sectionHeader
+
+            default:
+                return nil
+            }
+        }
+    }
+    
     func registerCells() {
         collectionView.register(FeatureCell.self, forCellWithReuseIdentifier: FeatureCell.reuseIdentifier)
         collectionView.register(ListTableCell.self, forCellWithReuseIdentifier: ListTableCell.reuseIdentifier)
+        collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseIdentifier)
     }
 
     func createCompositionalLayout() -> UICollectionViewLayout {
@@ -81,6 +105,9 @@ class ViewController: UIViewController {
         let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(200))
         let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: layoutGroupSize, subitems: [layoutItem])
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+        let header = createSectionHeader()
+        layoutSection.boundarySupplementaryItems = [header]
+        
         return layoutSection
     }
     
@@ -95,6 +122,14 @@ class ViewController: UIViewController {
         layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
         
         return layoutSection
+    }
+    
+    func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(80))
+        let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        
+        return layoutSectionHeader
     }
 
 }

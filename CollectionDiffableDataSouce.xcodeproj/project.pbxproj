@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13217B6B2850D32800EEFD17 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13217B6A2850D32800EEFD17 /* SectionHeader.swift */; };
+		13217B6D2850E9C600EEFD17 /* DownloadTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13217B6C2850E9C600EEFD17 /* DownloadTableCell.swift */; };
 		1341030E284FC4C900FB8A10 /* ConfigureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341030D284FC4C900FB8A10 /* ConfigureCell.swift */; };
 		13410310284FCED200FB8A10 /* ListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341030F284FCED200FB8A10 /* ListTableCell.swift */; };
 		13B17931284F87090056E033 /* DecodableWithParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B17930284F87090056E033 /* DecodableWithParse.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13217B6A2850D32800EEFD17 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		13217B6C2850E9C600EEFD17 /* DownloadTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTableCell.swift; sourceTree = "<group>"; };
 		1341030D284FC4C900FB8A10 /* ConfigureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCell.swift; sourceTree = "<group>"; };
 		1341030F284FCED200FB8A10 /* ListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableCell.swift; sourceTree = "<group>"; };
 		13B17930284F87090056E033 /* DecodableWithParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableWithParse.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 			children = (
 				13B17932284F94900056E033 /* FeatureCell.swift */,
 				1341030F284FCED200FB8A10 /* ListTableCell.swift */,
+				13217B6A2850D32800EEFD17 /* SectionHeader.swift */,
+				13217B6C2850E9C600EEFD17 /* DownloadTableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -192,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13217B6D2850E9C600EEFD17 /* DownloadTableCell.swift in Sources */,
 				2EF16373284E24A40060C8BD /* ViewController.swift in Sources */,
 				13B17931284F87090056E033 /* DecodableWithParse.swift in Sources */,
 				2EF16386284E25260060C8BD /* Section.swift in Sources */,
@@ -202,6 +209,7 @@
 				2EF1638A284E258C0060C8BD /* UIColor+Random.swift in Sources */,
 				13B17935284F94D60056E033 /* UIVIewPreview.swift in Sources */,
 				2EF16371284E24A40060C8BD /* SceneDelegate.swift in Sources */,
+				13217B6B2850D32800EEFD17 /* SectionHeader.swift in Sources */,
 				13B17933284F94900056E033 /* FeatureCell.swift in Sources */,
 				13410310284FCED200FB8A10 /* ListTableCell.swift in Sources */,
 				2EF1638E284E25E20060C8BD /* ViewCode.swift in Sources */,
